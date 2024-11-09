@@ -33,6 +33,10 @@ test('Add a TODO item with the text “TODO 1 - ” concatenated with the curren
   // Had to be used because there was no submit button
   await page.keyboard.press('Enter');
 
+  // Expects page to have text including below
+  // Couldnt make getByLabel to work so used text instead as a verification the object is created
+  await expect(page.getByText(`TODO 1 - ${currentDateFormattedString}`)).toBeVisible();
+
   // Find Input area by ID and fill with Todo 1 & date
   await page.fill('#todo-input', `TODO 2 - ${TomorrowDateFormattedString}`);
 
@@ -40,19 +44,24 @@ test('Add a TODO item with the text “TODO 1 - ” concatenated with the curren
   await page.keyboard.press('Enter');
 
   //https://playwright.dev/docs/locators#locate-by-text
-  // Had to use CSS as both todo items were identical including ID.
+  // Had to use CSS as both todo items were identical including ID. Check the Checkbox
   await page.locator('css=.todo-list > li:nth-child(1) > div:nth-child(1) > input:nth-child(1)').check();
+
+  // Verify its checked
+  await expect(page.locator('css=.todo-list > li:nth-child(1) > div:nth-child(1) > input:nth-child(1)')).toBeChecked();
+
+  // Needed to click/hover so the X would show up on the element to be clicked
+  await page.getByText(`TODO 2 - ${TomorrowDateFormattedString}`).click();
+
+  // Delete the Second Todo item
+  await page.locator('css=.todo-list > li:nth-child(2) > div:nth-child(1) > button:nth-child(3)').click();
 
   // Check Checkbox by using label
   //https://playwright.dev/docs/input
 
-  // Expects page to have text including below
-  // Couldnt make getByLabel to work so used text instead as a verification the object is created
-  await expect(page.getByText(`TODO 1 - ${currentDateFormattedString}`)).toBeVisible();
 
-  await expect(page.getByText(`TODO 2 - ${TomorrowDateFormattedString}`)).toBeVisible();
-
-  await expect(page.locator('css=.todo-list > li:nth-child(1) > div:nth-child(1) > input:nth-child(1)')).toBeChecked();
+  // https://playwright.dev/docs/api/class-locatorassertions#locator-assertions-to-be-empty
+  await expect(page.getByText(`TODO 2 - ${TomorrowDateFormattedString}`)).toBeHidden();
 });
 
 // test('Add a TODO item with the text “TODO 2 - ” concatenated with the next day.', async ({ page }) => {
