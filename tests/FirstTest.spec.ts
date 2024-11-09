@@ -16,8 +16,9 @@ test('Add a TODO item with the text: TODO 1', async ({ page }) => {
   // Had to be used because there was no submit button
   await page.keyboard.press('Enter');
   
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByLabel('TODO 1 - ' + formattedCurrentDate)).toBeVisible();
+  // Expects page to have text including below
+  // Couldnt make getByLabel to work so used text instead as a verification the object is created
+  await expect(page.getByText(`TODO 1 - ${formattedCurrentDate}`)).toBeVisible();
 });
 
 // test('get started link', async ({ page }) => {
