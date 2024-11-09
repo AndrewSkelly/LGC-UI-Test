@@ -1,20 +1,20 @@
 ## UI Testing Challenge - Andrew Skelly
 ### My Explanation is seen in my comments in the test file for further understanding!
 #### Set up a base project
-```
+```ruby
 npm init -y
 ```
 
 Install Playwright following docs - https://playwright.dev/docs/intro
 Accepted defaults for all selections during setup
-```
+```ruby
 npm init playwright@latest
 ```
 
 #### Deleted example tests boilerplate!
 
 To run all tests the command is shown below for headed & headless mode
-``` 
+```ruby
 npx playwright test
 npx playwright test --ui  
 ```
@@ -23,7 +23,7 @@ https://playwright.dev/docs/api/class-locator#locator-fill
 explains using fill to input into this textbox
 
 Setup Allure Reporting by installing Node JS & Java Version 8
-```
+```ruby
 npm install -g allure-commandline
 ```
 
@@ -35,17 +35,17 @@ Here Allure explains to intergrate with playwright
 https://allurereport.org/docs/playwright/
 
 Install the Adaptor
-```
+```ruby
 npm install --save-dev @playwright/test allure-playwright
 ```
 
 Add this line to the playwright config
-```
+```js
 reporter: [["line"], ["allure-playwright"]],
 ```
 
 Run either for testing or UI form of testing
-```
+```ruby
 npx playwright test
 npx playwright test --ui  
 ```
