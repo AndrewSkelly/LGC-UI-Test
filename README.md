@@ -1,6 +1,22 @@
 ## UI Testing Challenge - Andrew Skelly
 ### My Explanation is seen in my comments in the test file for further understanding!
-#### Set up a base project
+
+### How to Set up yourself
+git clone this repository then run the below command to install dependencies
+```
+npm install
+```
+
+Setup Allure Reporting by installing Node JS & Java Version 8
+```ruby
+npm install -g allure-commandline
+```
+
+Add Java directory to System envieroment variable (JAVA_HOME)
+Under PATH in system env variables add %JAVA_HOME%\bin so it is linked!!!
+Restart your IDE I had to so everything took effect.
+
+#### My setup
 ```ruby
 npm init -y
 ```
@@ -21,15 +37,6 @@ npx playwright test --ui
 
 https://playwright.dev/docs/api/class-locator#locator-fill
 explains using fill to input into this textbox
-
-Setup Allure Reporting by installing Node JS & Java Version 8
-```ruby
-npm install -g allure-commandline
-```
-
-Add Java directory to System envieroment variable (JAVA_HOME)
-Under PATH in system env variables add %JAVA_HOME%\bin so it is linked!!!
-Restart your IDE I had to so everything took effect.
 
 Here Allure explains to intergrate with playwright
 https://allurereport.org/docs/playwright/
